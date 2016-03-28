@@ -1,0 +1,5 @@
+#! /bin/sh
+# get my vmpooler token.  Used by other commands where the toke is required.
+
+grep --extended --only-matching 'vmpooler_token: .*' ${HOME}/.fog | awk -F ' ' '{print $2}'
+

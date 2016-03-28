@@ -1,0 +1,8 @@
+#! /bin/bash
+# Get a vm.  Argument specifies virtual machine desciption,
+# e.g., centos-7-x86_64
+
+cmd="curl -H X-AUTH-TOKEN:$(gt) -d --url vmpooler/vm/$1"
+echo $cmd
+$cmd
+echo 

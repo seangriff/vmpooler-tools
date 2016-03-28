@@ -1,0 +1,13 @@
+#! /bin/sh
+# Query or set machine life time for a VM.  If one argument is given, then
+# that VM's state is displayed.  If two arguments are given, the machine name
+# and the desired life span (in hours), than the life span of the VM is set to
+# the value of the second argument.
+
+if [ -z $2 ] ; then
+  vq $1
+else
+  curl -H X-AUTH-TOKEN:$(gt) -X PUT -d "{\"lifetime\":\"$2\"}" --url vmpooler/vm/$1
+  vq $1
+fi
+

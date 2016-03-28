@@ -1,0 +1,6 @@
+#! /bin/sh
+# Query the state of a VM.  If called with no arguments, a list of available
+# vmpooler machine types is displayed.
+
+curl --url vmpooler/vm/$1
+

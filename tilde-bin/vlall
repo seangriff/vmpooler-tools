@@ -1,0 +1,11 @@
+#! /bin/sh
+# Query or set lifespan for all of my VMs.  When called with no arguments,
+# the state of each of my VMs is displayed.  When called with one argument,
+# the new lifespan in hours, the each of my VMs will get have the new lifespan
+# value applied.
+
+for i in `myvms`
+do
+  vl $i $1
+done
+

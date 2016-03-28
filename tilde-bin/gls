@@ -1,0 +1,13 @@
+#! /usr/bin/perl
+# Get latest sha.  Gets the latest sha from the last successful build of
+# puppet agent.  Takes branch name as argument (master or stable)
+
+my $branch_name = shift;
+my $url = "https://jenkins.puppetlabs.com/view/puppet-agent/view/${branch_name}/view/puppet/job/platform_puppet_pkg-van-promote_${branch_name}/lastSuccessfulBuild/";
+my $cmd = "curl --silent --url \"$url\"";
+print(
+  (split(/"/, (split(/value=/, (split(/SUITE_COMMIT/, `$cmd`))[1]))[1]))[1]
+  . "\n"
+);
+exit (0);
+
