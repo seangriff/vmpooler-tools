@@ -1,0 +1,14 @@
+# vsh, vmpooler ssh, ssh to a vmpooler machine (adds the domain to the hostname)
+
+user=root
+
+if (vq $1 2>/dev/null | grep -i "template.*win" > /dev/null)  then
+  user=Administrator
+fi
+
+#echo $user  
+
+cmd="ssh -t $user@`echo $1 | awk -F '.' '{print $1}'`.delivery.puppetlabs.net"
+echo $cmd
+`echo $cmd`
+

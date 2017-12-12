@@ -1,0 +1,5 @@
+#! /bin/bash
+# get a sles 12 x86_64 vm
+
+gv sles-12-x86_64
+

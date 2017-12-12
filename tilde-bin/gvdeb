@@ -1,0 +1,3 @@
+#! /bin/bash
+# get a debian 8 x86_64 vm
+gv debian-8-x86_64

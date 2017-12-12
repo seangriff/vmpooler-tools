@@ -1,7 +1,7 @@
 #! /bin/bash
 # delete a vm, takes a vm name as onluy argument
 
-cmd="curl -X DELETE -H X-AUTH-TOKEN:$(gt) vmpooler/vm/$1"
+cmd="curl -X DELETE -H X-AUTH-TOKEN:$(gt) vmpooler.delivery.puppetlabs.net/vm/$1"
 echo $cmd
 $cmd
 echo 

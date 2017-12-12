@@ -1,0 +1,5 @@
+#! /bin/bash
+# get a fedora-23-x86_64 vm
+
+gv fedora-23-x86_64
+

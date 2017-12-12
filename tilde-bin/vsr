@@ -1,0 +1,36 @@
+#! /usr/bin/perl -w
+# restores snapshot with index $2 (latest by derfault) on vm $1 
+
+$vm = $ARGV[0];
+$snap_index = defined($ARGV[1]) ? $ARGV[1] : "latest";
+chomp($vm);
+my $host = `curl --url vmpooler.delivery.puppetlabs.net/vm/$vm 2>/dev/null`;
+my @split1 = split(/snapshots\": \[.*\n/, $host);
+if (scalar(@split1) < 2) {
+  print("No snapshots for $host\n");
+  exit (1);
+}
+my @snaps = split(/,/, (split(/\],/, $split1[1]))[0]);
+$snap_count = scalar(@snaps);
+if ($snap_index =~ /latest/i) {
+  $snap_index = $snap_count - 1;
+}
+if (($snap_index > $snap_count - 1) || $snap_count < 0) {
+  print(
+    "Snap shot index, $snap_index, is out of range (0 - "
+    . eval($snap_count - 1)
+    . ")\n"
+  );
+  exit (1);
+}
+  
+my $wantsnap = (split(/\"/, ($snaps[$snap_index])))[1];
+print("$vm:  $wantsnap ($snap_index)\n");
+# my $cmd = "curl -X POST -H X-AUTH-TOKEN:`gt` --url vmpooler.delivery.puppetlabs.net/api/v1/vm/$vm/snapshot/$wantsnap";
+my $token = `gt`;
+chomp($token);
+my $cmd = "curl -X POST -H X-AUTH-TOKEN:$token --url vmpooler.delivery.puppetlabs.net/api/v1/vm/$vm/snapshot/$wantsnap 2>/dev/null";
+print("$cmd\n");
+`$cmd`
+
+

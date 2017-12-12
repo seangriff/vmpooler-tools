@@ -2,5 +2,10 @@
 # Query the state of a VM.  If called with no arguments, a list of available
 # vmpooler machine types is displayed.
 
-curl --url vmpooler/vm/$1
+cmd="curl --url vmpooler.delivery.puppetlabs.net/vm/$1"
+echo $cmd
+
+$cmd
+
+echo 
 

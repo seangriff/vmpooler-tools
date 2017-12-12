@@ -1,7 +1,7 @@
 #! /usr/bin/perl -w
 # List the names of the VMs I have checked out.
 
-my $a = `curl -X GET --url vmpooler/token/\`gt\` 2>/dev/null`;
+my $a = `curl -X GET --url vmpooler.delivery.puppetlabs.net/token/\`gt\` 2>/dev/null`;
 my @myvms = split(/\"running\": \[/, $a);
 if (scalar @myvms < 2) {
   exit (0);

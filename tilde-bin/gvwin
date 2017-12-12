@@ -1,4 +1,4 @@
 #! /bin/bash
 # get a windows 2012r4 x86_64 machine
 
-gv win-2012r2-x86_64
+gv win-2016-x86_64

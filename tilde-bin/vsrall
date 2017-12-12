@@ -1,0 +1,9 @@
+#! /bin/bash
+# restore my vm snapshots
+
+snap=$1
+for v in `myvms`
+do
+  vsr $v $snap
+done
+

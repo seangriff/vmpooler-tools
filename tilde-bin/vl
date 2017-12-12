@@ -7,7 +7,11 @@
 if [ -z $2 ] ; then
   vq $1
 else
-  curl -H X-AUTH-TOKEN:$(gt) -X PUT -d "{\"lifetime\":\"$2\"}" --url vmpooler/vm/$1
+  cmd="curl -H X-AUTH-TOKEN:$(gt) -X PUT -d "{\"lifetime\":\"$2\"}" --url vmpooler.delivery.puppetlabs.net/vm/$1"
+  echo $cmd
+  $cmd
+  echo
   vq $1
 fi
+echo
 
