@@ -1,0 +1,7 @@
+#! /bin/bash
+# creates a snapshot of $1
+
+cmd="curl -X POST -H X-AUTH-TOKEN:$(gt) vmpooler.delivery.puppetlabs.net/api/v1/vm/$1/snapshot"
+echo $cmd
+$cmd
+echo 
